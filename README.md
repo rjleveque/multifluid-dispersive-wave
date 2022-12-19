@@ -1,1 +1,1 @@
-# source code for the hyperbolic model of the BBM equation
+# source code in Fortran for the hyperbolic model of the BBM equation
