@@ -1,0 +1,35 @@
+To run the code:
+1. make clear
+2. make
+3. ./xclaw
+
+The data files areR claw2ez.data and setprob.data
+
+Note that 
+1. in claw2ez.data
+(i)   method(2) = 2 means SSPRK22 and method(3) = 3 SSPRK33
+(ii)  method(9) = 1 means standard MUSCL (or TVD2) interpolation scheme
+(iii) method(9) = 2 means standard MUSCL interpolation scheme for cells
+     \alpha (volume fraction) <= alpha_min and
+     THINC modification for interface cells (\alpha > \alpha_min
+     and fulfil monotone condition)
+
+2. in setprob.data
+(i) thinc_beta is the parameter for THINC to adjust the sharpness 
+    of the hyperbolic tangent profile, typical value is between
+    2.3 and 1.5, for example. The larger the value is, the sharper
+    the profile is. 
+(ii) vofmin means \alpha_min mentioned above 1(ii).
+
+3. Graphic
+(i) Use plotsnap.m for 1D depth average plots of surface displacement 
+    and radial velocity
+(ii) Use plotclr.m for 2D pseudo-color plot
+
+
+4. CPU time (second)s 
+On a Mac studio with Apple M2 Ultra chips and 128G memory,
+it tooks
+(i)   6305.37939 on a 1250x250  grid
+(ii)  52849.5664 on a 2500x500  grid
+(iii) 423522.406 on a 5000x1000 grid

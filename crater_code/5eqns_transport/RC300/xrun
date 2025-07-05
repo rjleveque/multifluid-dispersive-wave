@@ -1,0 +1,7 @@
+make clear
+make
+rm fort.*
+rm *.eps
+rm *.png
+rm *.out
+nohup ./xclaw
