@@ -5,12 +5,15 @@ To run:
 
     make # to create xclaw
 
-    # modify claw2ez.data to modify resolution, e.g. to 20m
+    mkdir _output   # or desired name for this run
+    cp *.data _output
+    cd _output
 
-    mkdir _output_20m
-    cd _output_20m
+    # modify _output/claw2ez.data to modify resolution by changing mx,my
+    # change method(9) to switch from muscl (1) to thinc (2).
+
     time ../xclaw  # to run and report timing
 
 To plot:
 
-
+    Need to clean up Python plotting script

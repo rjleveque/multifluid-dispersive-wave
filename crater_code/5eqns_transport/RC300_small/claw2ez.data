@@ -19,7 +19,7 @@
 0                  method(6)   = mcapa
 2                  method(7)   = maux 
 2                  method(8)   = fluctuation
-2                  method(9)   = reconstruction scheme
+1                  method(9)   = reconstruction scheme
 0                  method(10) 
 
 6                  meqn        = number of equations in hyperbolic system
