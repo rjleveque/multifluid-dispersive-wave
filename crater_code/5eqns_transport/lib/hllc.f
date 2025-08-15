@@ -40,13 +40,13 @@ c
       flux1(1) = ql_state(1)*u1
       flux1(2) = ql_state(2)*u1
       flux1(3) = ql_state(3)*u1+p1
-      flux1(4) = ql_state(4)*v1
+      flux1(4) = ql_state(4)*u1
       flux1(5) = (ql_state(5)+p1)*u1
 c
       flux2(1) = qr_state(1)*u2
       flux2(2) = qr_state(2)*u2
       flux2(3) = qr_state(3)*u2+p2
-      flux2(4) = qr_state(4)*v2
+      flux2(4) = qr_state(4)*u2
       flux2(5) = (qr_state(5)+p2)*u2
 c
 c     # compute qhll state     
