@@ -1,0 +1,40 @@
+625                mx          = cells in x direction
+200                my          = cells in y direction
+ 
+31                 nout
+2                  outstyle
+ 0d0  10d0  20d0  30d0  40d0  50d0  60d0  70d0  80d0  90d0 100d0 110d0 120d0 130d0 140d0 150d0 160d0 170d0 180d0 190d0 200d0 210d0 220d0 230d0 240d0 250d0 260d0 270d0 280d0 290d0 300d0 
+
+ 
+0.001d0            dtv(1)      = initial dt (used in all steps if method(1)=0)
+1.0d99             dtv(2)      = max allowable dt
+1.0d0              cflv(1)     = max allowable Courant number
+0.5d0              cflv(2)     = desired Courant number
+90000              nv(1)       = max number of time steps per call to claw2
+
+1                  method(1)   = 1 for variable dt,   = 0 for fixed dt
+2                  method(2)   = time stepping scheme
+0                  method(3)   = 0 for dim-by-dim, 1 for GMD
+0                  method(4)   = verbosity of output
+1                  method(5)   = source term splitting
+0                  method(6)   = mcapa
+2                  method(7)   = maux 
+2                  method(8)   = fluctuation
+1                  method(9)   = reconstruction scheme
+0                  method(10) 
+
+6                  meqn        = number of equations in hyperbolic system
+3                  mwaves      = number of waves in each Riemann solution
+1 1 1              mthlim(mw)  = limiter for each wave  (mw=1,mwaves)
+
+0.0                t0    = initial time
+0.0                xlower      = left edge of computational domain
+50.0d3             xupper      = right edge of computational domain
+-4.0d3             ylower      = bottom edge of computational domain
+ 6.0d3             yupper      = top edge of computational domain
+
+3                  mbc         = number of ghost cells at each boundary
+3                  mthbc(1)    = type of boundary conditions at left
+1                  mthbc(2)    = type of boundary conditions at right
+3                  mthbc(3)    = type of boundary conditions at bottom
+0                  mthbc(4)    = type of boundary conditions at top
