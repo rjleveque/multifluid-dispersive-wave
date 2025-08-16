@@ -1,5 +1,5 @@
 """
-3000 m hemisphere
+100 m hemisphere
 """
 
 import sys
@@ -35,10 +35,10 @@ def rel_import(fullpath):
 
 C = rel_import(os.path.join(root_dir, 'compareALE3D.py'))
 
-outdir_mfluid = os.path.join(root_dir, 'RC3000_small/_output_80m_50km')
+outdir_mfluid = os.path.join(root_dir, 'RC100_small/_output_5m_top2km')
 
 datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250804'
-fname_prefix_ale = 'hemi3000m_4km'
+fname_prefix_ale = 'hemi100m_4km'
 
 tf_ale, find_frame_ale = C.load_times_ale(datadir_ale, fname_prefix_ale)
 tf_mfluid, find_frame_mfluid = C.load_times_mfluid(outdir_mfluid)
@@ -67,11 +67,11 @@ ale_plot, = plot(rkm, eta, 'b', label='ALE3D')
 legend(loc='upper right', framealpha=1)
 xlabel('radial distance (km)')
 ylabel('surface elevation (m)')
-xlim(0,50.)
-ylim(-3500,6000)
+xlim(0,1.5)
+ylim(-150,200)
 #ylim(-500,1000)
 grid(True)
-title_text = title('Hemispherical crater with radius 3000 m on 4km ocean')
+title_text = title('Hemispherical crater with radius 100 m on 4km ocean')
 
 
 def update(t):
@@ -96,7 +96,7 @@ def update(t):
         print('MISMATCH t = %.1f: frameno_ale = %i at t = %1.f, frameno_mfluid = %i at t = %1.f' \
             % (t,frameno_ale, t_ale, frameno_mfluid, t_mfluid))
 
-    title_text.set_text('Hemispherical crater, radius 3000 m, on 4km ocean,' \
+    title_text.set_text('Hemispherical crater, radius 100 m, on 4km ocean,' \
             + '  t = %6.1f  (ALE3D at t = %6.1f)' % (t_mfluid, t_ale))
 
 
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                                    interval=200, blit=False)
 
     # Output files:
-    name = 'RC3000_animation'
+    name = 'RC100_animation'
 
     fname_mp4 = name + '.mp4'
 
