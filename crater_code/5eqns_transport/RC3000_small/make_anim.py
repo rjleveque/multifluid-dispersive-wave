@@ -17,7 +17,7 @@ import os,sys,glob
 root_dir = '/Users/rjl/git/Forks/multifluid-dispersive-wave-collab/crater_code/5eqns_transport/'
 
 
-def rel_import(fullpath):
+def fullpath_import(fullpath):
     """
     Return a module imported from a full path name.
     To reload the module, call this again (rather than using importlib.reload).
@@ -33,9 +33,9 @@ def rel_import(fullpath):
     print('loaded module from file: ',module.__file__)
     return module
 
-C = rel_import(os.path.join(root_dir, 'compareALE3D.py'))
+C = fullpath_import(os.path.join(root_dir, 'compareALE3D.py'))
 
-outdir_mfluid = os.path.join(root_dir, 'RC3000_small/_output_80m_50km')
+outdir_mfluid = os.path.join(root_dir, 'RC3000_small/_output_80m_100km_12km')
 
 datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250804'
 fname_prefix_ale = 'hemi3000m_4km'
@@ -67,9 +67,9 @@ ale_plot, = plot(rkm, eta, 'b', label='ALE3D')
 legend(loc='upper right', framealpha=1)
 xlabel('radial distance (km)')
 ylabel('surface elevation (m)')
-xlim(0,50.)
-ylim(-3500,6000)
-#ylim(-500,1000)
+xlim(0,75.)
+#ylim(-3500,6000)
+ylim(-500,1000)
 grid(True)
 title_text = title('Hemispherical crater with radius 3000 m on 4km ocean')
 
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                                    interval=200, blit=False)
 
     # Output files:
-    name = 'RC3000_animation'
+    name = 'RC3000_animation_80m_100km_12km2'
 
     fname_mp4 = name + '.mp4'
 
