@@ -35,9 +35,12 @@ def rel_import(fullpath):
 
 C = rel_import(os.path.join(root_dir, 'compareALE3D.py'))
 
-outdir_mfluid = os.path.join(root_dir, 'RC300_small/_output_40m_muscl_fix')
+#outdir_mfluid = os.path.join(root_dir, 'RC300_small/_output_40m_muscl_fix')
+outdir_mfluid = os.path.join(root_dir, 'RC300_small/_output_10m_muscl')
 
-datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250804'
+#datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250804'
+datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250905'
+
 fname_prefix_ale = 'hemi300m_4km'
 
 tf_ale, find_frame_ale = C.load_times_ale(datadir_ale, fname_prefix_ale)
@@ -109,7 +112,7 @@ if __name__ == '__main__':
                                    interval=200, blit=False)
 
     # Output files:
-    name = 'RC300_animation'
+    name = 'RC300_animation_10m_newALE'
 
     fname_mp4 = name + '.mp4'
 

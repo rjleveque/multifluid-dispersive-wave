@@ -38,6 +38,8 @@ C = rel_import(os.path.join(root_dir, 'compareALE3D.py'))
 outdir_mfluid = os.path.join(root_dir, 'RC100_small/_output_5m_top2km')
 
 datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250804'
+datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250905'
+
 fname_prefix_ale = 'hemi100m_4km'
 
 tf_ale, find_frame_ale = C.load_times_ale(datadir_ale, fname_prefix_ale)
@@ -109,7 +111,7 @@ if __name__ == '__main__':
                                    interval=200, blit=False)
 
     # Output files:
-    name = 'RC100_animation'
+    name = 'RC100_animation_newALE'
 
     fname_mp4 = name + '.mp4'
 

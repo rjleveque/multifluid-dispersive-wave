@@ -38,10 +38,10 @@ C = fullpath_import(os.path.join(root_dir, 'compareALE3D.py'))
 outdir_mfluid = os.path.join(root_dir, 'RC1000_small/_output_40m_100km_t600')
 tf_mfluid, find_frame_mfluid = C.load_times_mfluid(outdir_mfluid)
 
-include_ale = False
+include_ale = True
 
 if include_ale:
-    datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250804'
+    datadir_ale = '/Users/rjl/D/Darrel_craters/surface_data_250905'
     fname_prefix_ale = 'hemi1000m_4km'
 
     tf_ale, find_frame_ale = C.load_times_ale(datadir_ale, fname_prefix_ale)
@@ -118,7 +118,7 @@ if __name__ == '__main__':
                                    interval=200, blit=False)
 
     # Output files:
-    name = 'RC1000_animation_40m_100km2'
+    name = 'RC1000_animation_40m_100km2_wALE'
 
     fname_mp4 = name + '.mp4'
 
