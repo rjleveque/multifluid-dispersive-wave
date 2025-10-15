@@ -65,10 +65,10 @@ def setrun(claw_pkg='amrclaw'):
     clawdata.upper[1] =  6.000000e+03          # yupper
     
     # Number of grid cells:
-    clawdata.num_cells[0] = 500*2      # mx
-    clawdata.num_cells[1] = 250*2      # my
-    #clawdata.num_cells[0] = 250      # mx
-    #clawdata.num_cells[1] = 125      # my
+    #clawdata.num_cells[0] = 500*2      # mx
+    #clawdata.num_cells[1] = 250*2      # my
+    clawdata.num_cells[0] = 250      # mx
+    clawdata.num_cells[1] = 125      # my
     #clawdata.num_cells[0] = 100      # mx
     #clawdata.num_cells[1] =  50      # my
     #clawdata.num_cells[0] = 50      # mx
@@ -149,7 +149,7 @@ def setrun(claw_pkg='amrclaw'):
     # The current t, dt, and cfl will be printed every time step
     # at AMR levels <= verbosity.  Set verbosity = 0 for no printing.
     #   (E.g. verbosity == 2 means print only on levels 1 and 2.)
-    clawdata.verbosity = 2
+    clawdata.verbosity = 1
     
     
 
@@ -282,7 +282,7 @@ def setrun(claw_pkg='amrclaw'):
 
     amrdata = rundata.amrdata
     #rundata.amrdata.max1d = 600
-    rundata.amrdata.max1d = 200
+    rundata.amrdata.max1d = 100
 
     # max number of refinement levels:
     amrdata.amr_levels_max = 2
@@ -316,14 +316,14 @@ def setrun(claw_pkg='amrclaw'):
 
     # width of buffer zone around flagged points:
     # (typically the same as regrid_interval so waves don't escape):
-    amrdata.regrid_buffer_width  = 5
+    amrdata.regrid_buffer_width  = 3
 
     # clustering alg. cutoff for (# flagged pts) / (total # of cells refined)
     # (closer to 1.0 => more small grids may be needed to cover flagged cells)
     amrdata.clustering_cutoff = 0.7
 
     # print info about each regridding up to this level:
-    amrdata.verbosity_regrid = 2      
+    amrdata.verbosity_regrid = 0      
 
 
     # ---------------

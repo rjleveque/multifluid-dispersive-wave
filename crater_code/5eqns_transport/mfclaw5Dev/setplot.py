@@ -47,8 +47,8 @@ def setplot(plotdata=None):
         plotaxes = plotfigure.new_plotaxes()
         #plotaxes.xlimits = 'auto'
         #plotaxes.ylimits = 'auto'
-        plotaxes.xlimits = [0,1000]   
-        plotaxes.ylimits = [-900,900]
+        plotaxes.xlimits = [0,2000]   
+        plotaxes.ylimits = [-1100,1100]
         plotaxes.title = f'q({m+1} ) '
         plotaxes.scaled = True      # so aspect ratio is 1
 
@@ -62,7 +62,7 @@ def setplot(plotdata=None):
         plotitem.pcolor_cmax = clims[m][1]
         #plotitem.amr_data_show = [1,0]  # which levels to plot data
         plotitem.amr_patchedges_show = [0,1,1]
-        #plotitem.amr_celledges_show = [1,0,0]
+        plotitem.amr_celledges_show = [1,0,0]
 
     # 2D pcolor plot if desired:
     # --------------------------
