@@ -1,4 +1,4 @@
-c
+
 c-----------------------------------------------------------
 c      
       subroutine qinit(meqn,mbc,mx,my,xlower,ylower,
@@ -21,6 +21,7 @@ c
       dimension aux(maux,1-mbc:mx+mbc,1-mbc:my+mbc)
       dimension q1(20),q2(20)
       dimension qloc(20)
+
 c
 c     # astroid impact problem         
 c
@@ -133,6 +134,17 @@ c
                 enddo
          endif
          enddo
+
+         write(66,*)"end of qinit"
+         write(66,*)"xlower,ylower",xlower,ylower
+         do i = 1,mx
+         do j = 1,my
+            xc = xlower + dble(i-1)*dx+0.5d0*dx
+            yc = ylower + dble(j-1)*dy+0.5d0*dy
+            !write(66,222)xc,yc,i+mbc,j+mbc,(q(iv,i,j),iv=1,meqn)
+ 222        format(2e14.6,2i4,6e15.7)
+         end do
+         end do
       return
 c
       end

@@ -65,8 +65,8 @@ def setrun(claw_pkg='amrclaw'):
     clawdata.upper[1] =  6.000000e+03          # yupper
     
     # Number of grid cells:
-    clawdata.num_cells[0] = 500      # mx
-    clawdata.num_cells[1] = 250      # my
+    clawdata.num_cells[0] = 500*2      # mx
+    clawdata.num_cells[1] = 250*2      # my
     #clawdata.num_cells[0] = 250      # mx
     #clawdata.num_cells[1] = 125      # my
     #clawdata.num_cells[0] = 100      # mx
@@ -119,18 +119,19 @@ def setrun(claw_pkg='amrclaw'):
         # Output ntimes frames at equally spaced times up to tfinal:
         # Can specify num_output_times = 0 for no output
         clawdata.num_output_times = 30
-        clawdata.tfinal = 60.0
+        clawdata.tfinal = 30.0
         clawdata.output_t0 = True  # output at initial (or restart) time?
         
     elif clawdata.output_style == 2:
         # Specify a list or numpy array of output times:
         # Include t0 if you want output at the initial time.
         clawdata.output_times =  [0.,2.0,4.0,6.0,8.0,10.0,12.0,14.0,16.0,18.0,20.0]
+        #clawdata.output_times =  [0.,2.0,4.0,6.0,8.0,10.0]  #,12.0,14.0,16.0,18.0,20.0]
  
     elif clawdata.output_style == 3:
         # Output every step_interval timesteps over total_steps timesteps:
         clawdata.output_step_interval = 1
-        clawdata.total_steps = 10
+        clawdata.total_steps = 5
         clawdata.output_t0 = True  # output at initial (or restart) time?
         
 
@@ -162,15 +163,16 @@ def setrun(claw_pkg='amrclaw'):
     
     # Initial time step for variable dt.  
     # (If dt_variable==0 then dt=dt_initial for all steps)
-    clawdata.dt_initial = 1.00000e-03
+    #clawdata.dt_initial = 1.00000e-03
+    clawdata.dt_initial = .016       
     
     # Max time step to be allowed if variable dt used:
     clawdata.dt_max = 1.000000e+99
     
     # Desired Courant number if variable dt used 
-    clawdata.cfl_desired = 0.6500000
+    clawdata.cfl_desired = 0.4500000
     # max Courant number to allow without retaking step with a smaller dt:
-    clawdata.cfl_max = 0.700000
+    clawdata.cfl_max = 0.500000
     #clawdata.cfl_max = 1.000000
     
     # Maximum number of time steps to allow between output times:
@@ -182,7 +184,7 @@ def setrun(claw_pkg='amrclaw'):
     # ------------------
 
     # Order of accuracy:  1 => Godunov,  2 => Lax-Wendroff plus limiters
-    clawdata.order = 1
+    clawdata.order = 2
     
     # Use dimensional splitting?
     clawdata.dimensional_split = 'unsplit'
@@ -191,7 +193,7 @@ def setrun(claw_pkg='amrclaw'):
     #  0 or 'none'      ==> donor cell (only normal solver used)
     #  1 or 'increment' ==> corner transport of waves
     #  2 or 'all'       ==> corner transport of 2nd order corrections too
-    clawdata.transverse_waves = 2
+    clawdata.transverse_waves = 0
     
     
     # Number of waves in the Riemann solution:
@@ -208,7 +210,7 @@ def setrun(claw_pkg='amrclaw'):
     #clawdata.limiter = ['vanleer','vanleer','vanleer']
     clawdata.limiter = ['minmod','minmod','minmod']
     
-    clawdata.use_fwaves = True     # True ==> use f-wave version of algorithms
+    clawdata.use_fwaves = False    # True ==> use f-wave version of algorithms
     
     # Source terms splitting:
     #   src_split == 0 or 'none'    ==> no source term (src routine never called)
@@ -253,7 +255,7 @@ def setrun(claw_pkg='amrclaw'):
     # Specify when checkpoint files should be created that can be
     # used to restart a computation.
 
-    clawdata.checkpt_style = 0
+    clawdata.checkpt_style = 3
 
     if clawdata.checkpt_style == 0:
         # Do not checkpoint at all
@@ -270,7 +272,7 @@ def setrun(claw_pkg='amrclaw'):
     elif clawdata.checkpt_style == 3:
         # Checkpoint every checkpt_interval timesteps (on Level 1)
         # and at the final time.
-        clawdata.checkpt_interval = 36
+        clawdata.checkpt_interval = 358
 
     
 
@@ -279,17 +281,16 @@ def setrun(claw_pkg='amrclaw'):
     # ---------------
 
     amrdata = rundata.amrdata
-    #rundata.amrdata.max1d = 35
-    #rundata.amrdata.max1d = 65
-    rundata.amrdata.max1d = 600
+    #rundata.amrdata.max1d = 600
+    rundata.amrdata.max1d = 200
 
     # max number of refinement levels:
-    amrdata.amr_levels_max = 1
+    amrdata.amr_levels_max = 2
 
     # List of refinement ratios at each level (length at least amr_level_max-1)
-    amrdata.refinement_ratios_x = [2, 2]
-    amrdata.refinement_ratios_y = [2, 2]
-    amrdata.refinement_ratios_t = [2, 2]
+    amrdata.refinement_ratios_x = [4, 2]
+    amrdata.refinement_ratios_y = [4, 2]
+    amrdata.refinement_ratios_t = [4, 2]
 
 
     # Specify type of each aux variable in clawdata.auxtype.
@@ -304,18 +305,18 @@ def setrun(claw_pkg='amrclaw'):
     
     # Flag for refinement using routine flag2refine:
     amrdata.flag2refine = True      # use this?
-    amrdata.flag2refine_tol = 0.2 # tolerance used in this routine
+    amrdata.flag2refine_tol = 0.5 # tolerance used in this routine
     # User can modify flag2refine to change the criterion for flagging.
     # Default: check maximum absolute difference of first component of q
     # between a cell and each of its neighbors.
 
     # steps to take on each level L between regriddings of level L+1:
-    #amrdata.regrid_interval = 2       
-    amrdata.regrid_interval = 2000000       
+    amrdata.regrid_interval = 2       
+    #amrdata.regrid_interval = 2000000       
 
     # width of buffer zone around flagged points:
     # (typically the same as regrid_interval so waves don't escape):
-    amrdata.regrid_buffer_width  = 2
+    amrdata.regrid_buffer_width  = 5
 
     # clustering alg. cutoff for (# flagged pts) / (total # of cells refined)
     # (closer to 1.0 => more small grids may be needed to cover flagged cells)
@@ -331,8 +332,8 @@ def setrun(claw_pkg='amrclaw'):
     regions=rundata.regiondata.regions = []
     # to specify regions of refinement append lines of the form
     #  [minlevel,maxlevel,t1,t2,x1,x2,y1,y2]
-    regions.append([1,1,0,10000,0,20000,-40000,60000])
-    regions.append([2,2,0,10000,0, 500,-4000,6000])
+    regions.append([1,2,0,10000,0,20000,-40000,60000])
+    regions.append([2,2,0,10000,0, 500,-700,700])
 
 
     #  ----- For developers ----- 

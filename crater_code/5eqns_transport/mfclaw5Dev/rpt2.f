@@ -1,7 +1,7 @@
 c
 c ---------------------------------------------------------------
 c           
-      subroutine rpt2(ixy,imp,maxm,meqn,mwaves,mbc,maux,mx,ql,qr,
+      subroutine rpt2(ixy,imp,maxm,meqn,mwaves,maux,mbc,mx,ql,qr,
      &           aux1,aux2,aux3,asdq,bmasdq,bpasdq)
 
       implicit double precision (a-h,o-z)
@@ -15,7 +15,7 @@ c
       dimension aux1(maux,1-mbc:maxm+mbc)
       dimension aux2(maux,1-mbc:maxm+mbc)
       dimension aux3(maux,1-mbc:maxm+mbc)
-      dimension speeds(20,2),s_local(20),wave_local(20,20)
+      dimension speeds(2,20),s_local(20),wave_local(20,20)
       dimension ql_state(20),qr_state(20)
       dimension delta(20)
       dimension rot(4)
@@ -62,14 +62,14 @@ c
          area = 1.0d0
          do mw=1,mwaves
             call state2_rotate_tr(rot,wave_local(1,mw))
-            speeds(mw,1) = area*dmin1(s_local(mw),0.d0)
+            speeds(1,mw) = area*dmin1(s_local(mw),0.d0)
             enddo
 c
          do m=1,meqn
             bmasdq(m,i) = 0.d0
             do mw=1,mwaves
                bmasdq(m,i) = bmasdq(m,i)+
-     &                       speeds(mw,1)*wave_local(m,mw)
+     &                       speeds(1,mw)*wave_local(m,mw)
                enddo
             enddo
 c
@@ -80,14 +80,14 @@ c
          area = 1.0d0              
          do mw=1,mwaves
             call state2_rotate_tr(rot,wave_local(1,mw))
-            speeds(mw,2) = area*dmax1(s_local(mw),0.d0)
+            speeds(2,mw) = area*dmax1(s_local(mw),0.d0)
             enddo
 c
          do m=1,meqn
             bpasdq(m,i) = 0.d0
             do mw=1,mwaves
                bpasdq(m,i) = bpasdq(m,i)+ 
-     &                       speeds(mw,2)*wave_local(m,mw)
+     &                       speeds(2,mw)*wave_local(m,mw)
                enddo
             enddo
          enddo                         

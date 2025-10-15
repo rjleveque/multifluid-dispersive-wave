@@ -15,18 +15,17 @@ CLAWMAKE = $(CLAW)/clawutil/src/Makefile.common
 CLAW_PKG = amrclaw                  # Clawpack package to use
 EXE = xamr                          # Executable to create
 SETRUN_FILE = setrun.py             # File containing function to make data
-OUTDIR = _output                    # Directory for output
-SETPLOT_FILE = setplot_surface.py          # File containing function to set plots
-#SETPLOT_FILE = setplot.py           # File containing function to set plots
-PLOTDIR = _plots                    # Directory for plots
+OUTDIR = _output                           # Directory for output
+SETPLOT_FILE = setplot.py           # File containing function to set plots
+PLOTDIR = _plots                            # Directory for plots
 
 OVERWRITE ?= True                   # False ==> make a copy of OUTDIR first
 
 # Environment variable FC should be set to fortran compiler, e.g. gfortran
 
 # Compiler flags can be specified here or set as an environment variable
-FFLAGS ?= -O -fopenmp   -fbounds-check -std=legacy -ffpe-trap='invalid,overflow,zero' 
-LFLAGS = -g   -fopenmp
+FFLAGS ?= -O -fopenmp    -fbounds-check -std=legacy -ffpe-trap='invalid,overflow,zero' 
+LFLAGS = -g  -fopenmp
 
 # ---------------------------------
 # package sources for this program:
@@ -52,6 +51,7 @@ EXCLUDE_SOURCES = \
 MODULES = \
 
 SOURCES = \
+  qad.f \
   qinit.f \
   cellave2.f \
   mapc2p.f \
@@ -61,14 +61,16 @@ SOURCES = \
   prmtoc_local.f \
   zeroin_local.f \
   bc2amr.f90  \
+  flag2refine2.f90  \
   grav_steady_sg.f  \
   dgrav_steady_sg.f  \
   ctomfd.f \
   zero1d_aux.f \
   estdt.f \
   setprob.f \
+  setgrd.f \
+  step2.f90 \
   setaux.f90 \
-  stepgrid.f \
   outmsh.f \
   outgrd.f \
   out1.f \
@@ -80,7 +82,11 @@ SOURCES = \
  ./state2_rotate3.f \
  ./roe.f \
 
+#  stepgrid.f \
 #  ./valout.f90 \
+#  b4step2.f90 \
+#  filpatch.f90  \
+#  tick.f \
 
 #-------------------------------------------------------------------
 # Include Makefile containing standard definitions and make options:

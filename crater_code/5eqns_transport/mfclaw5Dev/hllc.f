@@ -8,7 +8,7 @@ c
       dimension ql_state(20),qr_state(20)
       dimension aux1(30),aux2(30)
       dimension delta(20)
-      dimension s_local(20),wave_local(meqn,20)
+      dimension s_local(20),wave_local(20,20)
       dimension flux1(20),flux2(20)
       dimension qhll(20),work(20)
       dimension qml(20),qmr(20)
@@ -18,20 +18,20 @@ c     # HLLC approximate Riemann solver
 c     # Davis' wave speed estimate
 c
       call ctomfd(ql_state,rhoa1,rhob1,u1,v1,rhoh1,p1,
-     &     grue1,zeta1,zfa1,zfb1,c21)
+     &     grue1,pref1,zfa1,zfb1,c21)
       call ctomfd(qr_state,rhoa2,rhob2,u2,v2,rhoh2,p2,
-     &     grue2,zeta2,zfa2,zfb2,c22)
+     &     grue2,pref2,zfa2,zfb2,c22)
 c
       if (c21  .lt. 0.d0 .or. c22  .lt. 0.d0) then
-          write(66,*) 'error in hllc_solver:'
-          write(66,*) 'c21=',c21,', c22=',c22
-          write(66,*) 'rhoa1=',rhoa1,', rhob1=',rhob1
-          write(66,*) 'rhoa2=',rhoa2,', rhob2=',rhob2
-          write(66,*) 'p1=',p1,', p2=',p2
-          write(66,*) 'zfa1=',zfa1,', zfa2=',zfa2
-          write(66,*) 'zfb1=',zfb1,', zfb2=',zfb2
-          write(66,*) 'ql_state=',(ql_state(m),m=1,meqn)
-          write(66,*) 'qr_state=',(qr_state(m),m=1,meqn)
+          write(6,*) 'error in hllc_solver:'
+          write(6,*) 'c21=',c21,', c22=',c22
+          write(6,*) 'rhoa1=',rhoa1,', rhob1=',rhob1
+          write(6,*) 'rhoa2=',rhoa2,', rhob2=',rhob2
+          write(6,*) 'p1=',p1,', p2=',p2
+          write(6,*) 'zfa1=',zfa1,', zfa2=',zfa2
+          write(6,*) 'zfb1=',zfb1,', zfb2=',zfb2
+          write(6,*) 'ql_state=',(ql_state(m),m=1,meqn)
+          write(6,*) 'qr_state=',(qr_state(m),m=1,meqn)
           stop
       endif
 c

@@ -12,14 +12,10 @@ c
       dimension apdq(meqn,1-mbc:maxm+mbc)
       dimension auxl(maux,1-mbc:maxm+mbc)
       dimension auxr(maux,1-mbc:maxm+mbc)
-      ! IS 20 MAXVAR or MEQN?
       dimension ql_state(20),qr_state(20)
-      ! IS 30 MAXAUX?
       dimension aux1(30),aux2(30)
       dimension delta(20)
-      !dimension wave_local(20,20)
-      dimension wave_local(meqn,20)
-      ! IS 20 maxvar?
+      dimension wave_local(20,20)
       dimension s_local(20)
       dimension speeds(2,20)
 c

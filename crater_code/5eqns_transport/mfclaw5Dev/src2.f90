@@ -1,4 +1,4 @@
-subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt,dq)
+subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt)
 
 
 !> Called to update q by solving source term equation 
@@ -10,8 +10,6 @@ subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt,dq)
     real(kind=8), intent(in) :: xlower,ylower,dx,dy,t,dt
     real(kind=8), intent(in) :: aux(maux,1-mbc:mx+mbc,1-mbc:my+mbc)
     real(kind=8), intent(inout) :: q(meqn,1-mbc:mx+mbc,1-mbc:my+mbc)
-    ! dq is an output var, comes in as 0., FIX CALLING ROUTINE
-    real(kind=8), intent(inout) :: dq(meqn,1-mbc:mx+mbc,1-mbc:my+mbc)
 
     real(kind=8) :: qloc(meqn), psi(meqn)
     real(kind=8) :: rhoa0,rhob0,vx0,vy0,rhoh0,p0,grue0
@@ -41,7 +39,7 @@ subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt,dq)
          psi(1) = gaxis*qloc(1)*vx0
          psi(2) = gaxis*qloc(2)*vx0
          psi(3) = gaxis*qloc(3)*vx0
-         psi(4) = gaxis*qloc(1)*vx0 - grav*(qloc(4))
+         psi(4) = gaxis*qloc(4)*vx0 - grav*(qloc(1)+qloc(2))
          psi(5) = gaxis*rhoh0*vx0 - grav*qloc(4)
          psi(6) = 0.d0
 !
